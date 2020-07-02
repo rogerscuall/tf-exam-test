@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "example" {
-  count = 2
+  count         = 2
   ami           = "ami-b374d5a5"
   instance_type = "t2.micro"
 }
@@ -22,6 +22,11 @@ data "aws_ami" "example" {
     Tested = "true"
   }
 }
+
+output "aws_ami" {
+  value = data.aws_ami.example
+}
+
 terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
@@ -31,3 +36,4 @@ terraform {
     }
   }
 }
+
